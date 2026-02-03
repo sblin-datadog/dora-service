@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dora
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dora-service
+  namespace: dora
+  labels:
+    app: dora-service
+    tags.datadoghq.com/service: dora-service
+    tags.datadoghq.com/version: "1.0.0"
+    tags.datadoghq.com/env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dora-service
+  template:
+    metadata:
+      labels:
+        app: dora-service
+        tags.datadoghq.com/service: dora-service
+        tags.datadoghq.com/version: "1.0.0"
+        tags.datadoghq.com/env: prod
+    spec:
+      containers:
+        - name: dora-service
+          image: samuelbin/dora-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DD_SERVICE
+              value: "dora-service"
+            - name: DD_VERSION
+              value: "1.0.0"
+            - name: DD_ENV
+              value: "dev"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dora-service
+  namespace: dora
+  labels:
+    app: dora-service
+spec:
+  selector:
+    app: dora-service
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP
+
