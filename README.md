@@ -57,3 +57,4 @@ kubectl port-forward -n dora svc/dora-service 8080:80
 curl http://localhost:8080/dora
 ```
 
+Version 1.1.0
