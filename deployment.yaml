@@ -11,7 +11,7 @@ metadata:
   labels:
     app: dora-service
     tags.datadoghq.com/service: dora-service
-    tags.datadoghq.com/version: "1.5.2"
+    tags.datadoghq.com/version: "1.5.3"
     tags.datadoghq.com/env: prod
 spec:
   replicas: 1
@@ -23,23 +23,23 @@ spec:
       labels:
         app: dora-service
         tags.datadoghq.com/service: dora-service
-        tags.datadoghq.com/version: "1.5.2"
+        tags.datadoghq.com/version: "1.5.3"
         tags.datadoghq.com/env: prod
     spec:
       containers:
         - name: dora-service
-          image: samuelblin/dora-service:1.5.2
+          image: samuelblin/dora-service:1.5.3
           ports:
             - containerPort: 8080
           env:
             - name: DD_SERVICE
               value: "dora-service"
             - name: DD_VERSION
-              value: "1.5.2"
+              value: "1.5.3"
             - name: DD_ENV
               value: "dev"
             - name: DD_GIT_COMMIT_SHA
-              value: d153574e03866465306c3f9639d1534f7e09d91b
+              value: 8003f0db9c274c2bf021aae3b33824d7f33c0d60
             - name: DD_GIT_REPOSITORY_URL
               value: https://github.com/sblin-datadog/dora-service
           resources:
