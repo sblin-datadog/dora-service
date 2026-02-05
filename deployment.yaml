@@ -11,7 +11,7 @@ metadata:
   labels:
     app: dora-service
     tags.datadoghq.com/service: dora-service
-    tags.datadoghq.com/version: "1.5.0"
+    tags.datadoghq.com/version: "1.5.1"
     tags.datadoghq.com/env: prod
 spec:
   replicas: 1
@@ -23,19 +23,19 @@ spec:
       labels:
         app: dora-service
         tags.datadoghq.com/service: dora-service
-        tags.datadoghq.com/version: "1.5.0"
+        tags.datadoghq.com/version: "1.5.1"
         tags.datadoghq.com/env: prod
     spec:
       containers:
         - name: dora-service
-          image: samuelblin/dora-service:1.5.0
+          image: samuelblin/dora-service:1.5.1
           ports:
             - containerPort: 8080
           env:
             - name: DD_SERVICE
               value: "dora-service"
             - name: DD_VERSION
-              value: "1.5.0"
+              value: "1.5.1"
             - name: DD_ENV
               value: "dev"
             - name: DD_GIT_COMMIT_SHA
