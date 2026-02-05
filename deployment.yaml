@@ -39,7 +39,7 @@ spec:
             - name: DD_ENV
               value: "dev"
             - name: DD_GIT_COMMIT_SHA
-              value: 2adcaeb3619216d7e4ff76c476d7ada73d066b72
+              value: 6a0ce7527f991aaf468e1cbc8d994b68b13a008d
             - name: DD_GIT_REPOSITORY_URL
               value: https://github.com/sblin-datadog/dora-service
           resources:
