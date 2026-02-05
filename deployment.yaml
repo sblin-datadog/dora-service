@@ -11,7 +11,7 @@ metadata:
   labels:
     app: dora-service
     tags.datadoghq.com/service: dora-service
-    tags.datadoghq.com/version: "1.0.0"
+    tags.datadoghq.com/version: "1.2.0"
     tags.datadoghq.com/env: prod
 spec:
   replicas: 1
@@ -23,21 +23,25 @@ spec:
       labels:
         app: dora-service
         tags.datadoghq.com/service: dora-service
-        tags.datadoghq.com/version: "1.0.0"
+        tags.datadoghq.com/version: "1.2.0"
         tags.datadoghq.com/env: prod
     spec:
       containers:
         - name: dora-service
-          image: samuelbin/dora-service:latest
+          image: samuelblin/dora-service:1.2.0
           ports:
             - containerPort: 8080
           env:
             - name: DD_SERVICE
               value: "dora-service"
             - name: DD_VERSION
-              value: "1.0.0"
+              value: "1.2.0"
             - name: DD_ENV
               value: "dev"
+            - name: DD_GIT_COMMIT_SHA
+              value: 2292c247be21818196d392aa9ba397ba3ac8f3b4
+            - name: DD_GIT_REPOSITORY_URL
+              value: https://github.com/sblin-datadog/dora-service
           resources:
             requests:
               memory: "64Mi"
@@ -57,7 +61,7 @@ spec:
   selector:
     app: dora-service
   ports:
-    - port: 80
+    - port: 8282
       targetPort: 8080
   type: ClusterIP
 
